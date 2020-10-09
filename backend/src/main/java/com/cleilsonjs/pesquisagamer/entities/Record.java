@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="tb_record")
+@Table(name = "tb_record")
 public class Record implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -19,18 +21,22 @@ public class Record implements Serializable{
 	private long id;
 	private String name;
 	private Integer age;
-	private Instant monment;
+	private Instant moment;
 	
+	@ManyToOne
+	@JoinColumn(name = "game_id")
 	private Game game;
+
+	
 	
 	public Record() {}
 
-	public Record(long id, String name, Integer age, Instant monment, Game game) {
+	public Record(long id, String name, Integer age, Instant moment, Game game) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
-		this.monment = monment;
+		this.moment = moment;
 		this.game = game;
 	}
 
@@ -58,12 +64,12 @@ public class Record implements Serializable{
 		this.age = age;
 	}
 
-	public Instant getMonment() {
-		return monment;
+	public Instant getMoment() {
+		return moment;
 	}
 
-	public void setMonment(Instant monment) {
-		this.monment = monment;
+	public void setMonment(Instant moment) {
+		this.moment = moment;
 	}
 
 	public Game getGame() {
@@ -99,6 +105,4 @@ public class Record implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 }
